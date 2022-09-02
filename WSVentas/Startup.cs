@@ -15,6 +15,7 @@ namespace WSVentas
 {
     public class Startup
     {
+        readonly string Cors = "Cors";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -25,6 +26,14 @@ namespace WSVentas
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: Cors,
+                    builder =>
+                    {
+                        builder.WithOrigins("http://192.168.0.2:4200");
+                    });
+            });
             services.AddControllers();
         }
 
@@ -39,6 +48,8 @@ namespace WSVentas
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(Cors);
 
             app.UseAuthorization();
 

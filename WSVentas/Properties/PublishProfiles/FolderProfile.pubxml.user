@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>\\dc-casa\ftp-casa</_PublishTargetUrl>
+    <History>False|2022-09-01T18:55:05.9399249Z;</History>
+  </PropertyGroup>
+</Project>
