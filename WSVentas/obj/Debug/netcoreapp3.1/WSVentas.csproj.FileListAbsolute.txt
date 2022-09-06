@@ -40,3 +40,11 @@ D:\C#\Web\WSVentas\WSVentas\obj\Debug\netcoreapp3.1\WSVentas.csproj.CopyComplete
 D:\C#\Web\WSVentas\WSVentas\obj\Debug\netcoreapp3.1\WSVentas.dll
 D:\C#\Web\WSVentas\WSVentas\obj\Debug\netcoreapp3.1\WSVentas.pdb
 D:\C#\Web\WSVentas\WSVentas\obj\Debug\netcoreapp3.1\WSVentas.genruntimeconfig.cache
+D:\C#\Web\WSVentas\WSVentas\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\C#\Web\WSVentas\WSVentas\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\C#\Web\WSVentas\WSVentas\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+D:\C#\Web\WSVentas\WSVentas\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+D:\C#\Web\WSVentas\WSVentas\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\C#\Web\WSVentas\WSVentas\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+D:\C#\Web\WSVentas\WSVentas\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\C#\Web\WSVentas\WSVentas\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll

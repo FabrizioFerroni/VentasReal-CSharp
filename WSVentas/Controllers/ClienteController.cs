@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,19 +11,20 @@ namespace WSVentas.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ClienteController : ControllerBase
     {
-        
+
         [HttpGet]
         public IActionResult Get()
         {
 
-                Respuesta orsp = new Respuesta();
+            Respuesta orsp = new Respuesta();
             try
             {
                 using (VentasRealContext db = new VentasRealContext())
                 {
-                    var lst = db.Cliente.ToList();
+                    var lst = db.Cliente.OrderByDescending(d => d.Id).ToList();
                     orsp.Status = 200;
                     orsp.Mensaje = "Ok";
                     orsp.Data = lst;
@@ -32,11 +34,34 @@ namespace WSVentas.Controllers
             {
                 orsp.Mensaje = "Hubo un error: " + e.Message;
             }
-                    return Ok(orsp);
+            return Ok(orsp);
+        }
+
+
+        [HttpGet("{Id}")]
+        public IActionResult obtId(long Id)
+        {
+
+            Respuesta orsp = new Respuesta();
+            try
+            {
+                using (VentasRealContext db = new VentasRealContext())
+                {
+                    var lst = db.Cliente.Find(Id);
+                    orsp.Status = 200;
+                    orsp.Mensaje = "Ok";
+                    orsp.Data = lst;
+                }
+            }
+            catch (Exception e)
+            {
+                orsp.Mensaje = "Hubo un error: " + e.Message;
+            }
+            return Ok(orsp);
         }
 
         [HttpPost("nuevo")]
-        public IActionResult AddClient(ClienteDto dto)
+        public IActionResult AddClient(ClienteDao dao)
         {
 
             Respuesta orsp = new Respuesta();
@@ -45,7 +70,7 @@ namespace WSVentas.Controllers
                 using (VentasRealContext db = new VentasRealContext())
                 {
                     Cliente oClient = new Cliente();
-                    oClient.Nombre = dto.Nombre;
+                    oClient.Nombre = dao.Nombre;
                     db.Cliente.Add(oClient);
                     db.SaveChanges();
                     orsp.Mensaje = "Ok";
@@ -64,7 +89,7 @@ namespace WSVentas.Controllers
 
 
         [HttpPut("{Id}/editar")]
-        public IActionResult EditClient(long Id, ClienteDto dto)
+        public IActionResult EditClient(long Id, ClienteDao dao)
         {
 
             Respuesta orsp = new Respuesta();
@@ -73,7 +98,7 @@ namespace WSVentas.Controllers
                 using (VentasRealContext db = new VentasRealContext())
                 {
                     Cliente oClient = db.Cliente.Find(Id);
-                    oClient.Nombre = dto.Nombre;
+                    oClient.Nombre = dao.Nombre;
                     db.Entry(oClient).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                     db.SaveChanges();
                     orsp.Mensaje = "Ok";
