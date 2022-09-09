@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WSVentas.Models.Common;
 using WSVentas.Services;
+using WSVentas.Tools;
 
 namespace WSVentas
 {
@@ -44,9 +45,13 @@ namespace WSVentas
                         builder.WithMethods("*");
                     });
             });
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.Converters.Add(new IntToStringConverter());
+                options.JsonSerializerOptions.Converters.Add(new DecimalToStringConverter());
+            });
 
-            var appSettingsSection = Configuration.GetSection("AppSettings");
+                var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
 
             //JWT 
